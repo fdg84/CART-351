@@ -114,6 +114,38 @@
     <div id = "e" class = "theRes" data-ref = "c_opt"></div>
   </div>
 
+  <script>
+    window.onload = function(){
+    
+      let a_button = document.getElementById("a_opt");
+      a_button.addEventListener("click", saveStateHandler);
+
+      function saveStateHandler(event){
+
+        console.log(this);
+        //let key_a =("data_key_a");
+        //let val_a = "help";
+
+        //localStorage.setItem(key_a,val_a);
+          //localStorage.setItem(key_a,"helpppppp");
+
+          if(document.getElementById("inputField_a").value !==''){
+
+            let key_a ="data_key_a";
+            localStorage.setItem(key_a,document.getElementById("inputField_a").value)
+
+          }
+
+      }
+
+
+
+
+    }
+
+
+  </script>
+
 
 </body>
 </html>
