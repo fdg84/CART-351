@@ -42,6 +42,12 @@ h4{
 <body>
   <div id = "outer">
 
+    <h4> Select an Image </h4>
+   <div class ="wrapper" id = "image-selector">
+   <input type="file"  id="inputImage">
+    </div>
+  <div id = "resContainer">RESULT:</div>
+
     <h4> Drop & drop a file</h4>
     <div id = "dropTarget"> 
        <p>DROP TARGET FOR FILES </p>
@@ -112,6 +118,35 @@ function handleFiles(selectedFileList){
     console.log("file type:: "+selectedFileList[i].type);
   }
 }
+
+document.getElementById('inputImage').addEventListener('change', readAndHandleImageFile);
+
+
+/*handle reading and viewing of image file */
+  /*handle reading and viewing of image file */
+  function readAndHandleImageFile(){
+  // get the file list ...
+  const selectedFileList = this.files;
+  const file = selectedFileList[0];
+ 
+  if (file.type.startsWith('image/')){
+    const img = document.createElement("img"); // create a new image element
+    const reader = new FileReader();
+ 
+    /*add an event listener for once the file has been read successfully by the
+    readAsDataURL function ..*/
+    reader.addEventListener("load", function () {
+    // get the result which has been formatted as  data:URL - (the encoded image)
+   console.log(reader.result);
+   img.src = reader.result;
+    // append to the document
+    document.getElementById("resContainer").appendChild(img);
+ });
+  //STARTS THE PROCESS OF READING
+  reader.readAsDataURL(file);
+  }//end if
+ 
+}//end event handler
 
     }
     </script>
