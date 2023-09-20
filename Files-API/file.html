@@ -41,6 +41,80 @@ h4{
 </head>
 <body>
   <div id = "outer">
+
+    <h4> Drop & drop a file</h4>
+    <div id = "dropTarget"> 
+       <p>DROP TARGET FOR FILES </p>
+ </div>
+
+    <h4> Select a file </h4>
+    <div class ="wrapper">
+      <input type="file" multiple id="inputTest">
+        </div>
+
    </div>
+
+   <script>
+    window.onload = function(){
+     document.getElementById('inputTest').addEventListener('change', customFileHandler);
+    
+     function customFileHandler(event){
+  // get the file list ...
+  const selectedFileList = this.files;
+  console.log(selectedFileList);
+  const numFiles = selectedFileList.length;
+  console.log("the number of files selected:: "+numFiles);
+  for(let i=0; i< numFiles;i++){
+    console.log("name:: "+selectedFileList[i].name);
+    console.log("size:: "+selectedFileList[i].size+" bytes");
+    console.log("file type:: "+selectedFileList[i].type);
+  }
+}
+    
+/* access the drop box */
+let dropbox;
+dropbox = document.getElementById("dropTarget");
+console.log(dropbox);
+dropbox.addEventListener("dragenter", dragEnterFile, false); // when enter
+dropbox.addEventListener("dragover", dragEnterFile, false); //when over
+dropbox.addEventListener("drop", handleDropFile, false); //when dropped
+
+// WE MUST stop the default behaviour that the event would perform ...
+function dragEnterFile(event) {
+  console.log("dragging")
+ /*https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation*/
+   event.stopPropagation();
+/*https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault*/
+  event.preventDefault();
+}
+
+function handleDropFile(event) {
+  event.stopPropagation();
+  event.preventDefault();
+  console.log("dropped");
+ // get the data transfer object :: holds info about what was dropped  -
+  const dataTransferObj = event.dataTransfer;
+  console.log(dataTransferObj);
+  const files = dataTransferObj.files;
+// now call the handleFiles function ...
+handleFiles(files);
+ 
+}
+
+/* handle what should we do with the files... */
+function handleFiles(selectedFileList){
+  console.log(selectedFileList);
+  const numFiles = selectedFileList.length;
+  console.log("the number of files selected:: "+numFiles);
+  for(let i=0; i< numFiles;i++){
+    console.log("name:: "+selectedFileList[i].name);
+    console.log("size:: "+selectedFileList[i].size+" bytes");
+    console.log("file type:: "+selectedFileList[i].type);
+  }
+}
+
+    }
+    </script>
+
 </body>
 </html>
