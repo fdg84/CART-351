@@ -109,13 +109,19 @@
   <div class = "back">
   <input type ="button" value =" refresh the output" id = "refresh" /> 
   <div class = "wrapper">
-    <div id = "c" class = "theRes" data-ref = "a_opt"></div>
-    <div id = "d" class = "theRes" data-ref = "b_opt"></div>
-    <div id = "e" class = "theRes" data-ref = "c_opt"></div>
+    <div id = "c" class = "theRes" data-ref = "data_key_a"></div>
+    <div id = "d" class = "theRes" data-ref = "dat_key_b"></div>
+    <div id = "e" class = "theRes" data-ref = "data_key_c"></div>
   </div>
 
   <script>
     window.onload = function(){
+
+      //localStorage.clear();
+
+      //localStorage.setItem("key_b","hello b")
+      console.log(Object.keys(localStorage))
+      console.log(Object.entries(localStorage))
     
       let a_button = document.getElementById("a_opt");
       a_button.addEventListener("click", saveStateHandler);
@@ -132,14 +138,71 @@
           if(document.getElementById("inputField_a").value !==''){
 
             let key_a ="data_key_a";
-            localStorage.setItem(key_a,document.getElementById("inputField_a").value)
+
+            // let arr = ["sunday","monday","tuesday"];
+            // let arr_string = JSON.stringify(arr);
+            // localStorage.setItem(key_a, arr_string);
+
+            //console.log(localStorage.getItem(key_a))
+            if(localStorage.getItem(key_a) !==null){
+            let current_arr_str = localStorage.getItem(key_a);
+            let current_arr = JSON.parse(current_arr_str);
+            console.log(current_arr);
+            current_arr.push(document.getElementById("inputField_a").value);
+            localStorage.setItem(key_a,JSON.stringify(current_arr));
+            }
+
+            else{
+              let new_arr = [document.getElementById("inputField_a").value];
+              localStorage.setItem(key_a,JSON.stringify(new_arr));
+
+            } 
+      
+            refreshHandler();
+
+
+
+            // let jsObject = {keyA: "sunday", keyB: "monday", keyC: "tuesday"}
+            // let jsString = JSON.stringify(jsObject);
+
+            // console.log(jsObject);
+            // console.log(jsString);
+
+            // let jsObject_2 = JSON.parse(jsString);
+            // console.log(jsObject_2);
+
+            
+            //localStorage.setItem(key_a,document.getElementById("inputField_a").value)
 
           }
 
       }
 
 
+document.getElementById("refresh").addEventListener("click",refreshHandler);
 
+function refreshHandler(){
+
+
+  let arr_parsed = JSON.parse(localStorage.getItem("data_key_a"));
+  console.log(arr_parsed);
+
+  let key = "data_key_a";
+
+  let textBox = document.querySelector(`div[data-ref=${key}]`)
+  textBox.textContent = '';
+  console.log(textBox);
+
+  for(let i = 0; i< arr_parsed.length; i++){
+    let pTag = document.createElement("p");
+    pTag.textContent = arr_parsed[i];
+    textBox.appendChild(pTag);
+    pTag.classList.add("textRet");
+
+
+  }
+
+}
 
     }
 
