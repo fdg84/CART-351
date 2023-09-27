@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+   <title>WEEK THREE - INTERSECTION</title>
+<style>
+   html,body{
+    margin:0;
+    padding:0;
+
+}
+
+#parent{
+    margin:0;
+    padding:0;
+    height: 1800px;
+    width: 500px;
+    margin: 100px auto;
+    position:relative;
+    }
+
+div.scroll {
+    background-color: #e1c1f5;
+    width: 600px;
+    height: 500px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: center;
+    margin-left:100px;
+    margin-top:100px;
+   
+  }
+  .screen_a{
+    background:#4290f5;
+    height:50px;
+    width:90%;
+    margin-left:5%;
+    margin-top:5%;
+    left:0;
+    top:0;
+  }
+
+  .screen_a p{
+    padding:15px;
+    color:white;
+    font-size: 18px;
+  }
+  .screen_c p{
+    padding:15px;
+    color:white;
+    font-size: 18px;
+  }
+
+  .screen_b{
+    background:rgba(0,0,0,0);
+    height:1000px;
+    width:100%;
+  }
+  .screen_c{
+    background:#4290f5;
+    width:90%;
+    height:50px;
+    margin-left:5%;
+    margin-bottom:5%;
+ 
+  }
+  .after{
+    background-color: blanchedalmond;
+    margin-left:5%;
+    width:90%;
+    height:800px;
+  }
+  .after img{
+    margin-top:25px;
+    width:85%;
+    height:auto;
+  }
+</style>
+</head>
+<body>
+            <div class="scroll" id = "scroller">
+            <div class ="screen_a"> <p>ELEMENT A</p></div>
+            <div class ="screen_b"> </div>
+            <div id = "intersectingEl" class = "screen_c"><p>ELEMENT B</p> </div> 
+            <div class = "after">
+                <img class = "reveal-lazy"  src = "images/download.png" data-src = "images/image_daisy.jpg"/>
+                <img class = "reveal-lazy"  src = "images/download.png" data-src = "images/flower-two.jpg"/>
+
+            </div>
+        </div>
+
+      
+</body>
+
+</html>
