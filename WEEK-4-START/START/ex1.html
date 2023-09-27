@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title> FETCH JSON </title>
+  <style>
+  body{
+    margin:0;
+    padding:0;
+    font-family:Arial, Helvetica, sans-serif;
+  }
+  #container{
+    background: #6699ff;
+    width:70vw;
+    margin-top:50px;
+    margin-left:15vw;
+    min-height:400px;
+    padding:10px;
+}
+h1{
+    padding:5px;
+    text-align: center;
+    background:rgba(255,255,255,.5);
+}
+.mButton{
+    width:max-content;
+    padding:5px;
+    background-color: yellow;
+    color:#292929;
+    font-size: 18px;
+    border-radius: 2px;
+    cursor: pointer;
+
+}
+.mButton:hover{
+    background-color: #292929;
+    color:yellow;
+}
+
+.mflex{
+    display:flex;
+    flex-wrap:wrap;
+    flex-basis:50%;
+    width:100%;
+    justify-content:space-evenly;
+}
+  
+  .squ{
+    position:absolute;
+    width:40px;
+    height:40px;
+    z-index:1;
+    background:#c51d03;
+  
+  }
+  .circ{
+    position:absolute;
+    border-radius:20px;
+    z-index: 100;
+    width:40px;
+    height:40px;
+    background:#c51d03;
+  }
+  #parent{
+    width:600px;
+    height:600px;
+    background:black;
+    margin:10px;
+    position:relative;
+
+  }
+
+  </style>
+</head>
+<body>
+    <!-- do a basic fetch -- look both at .text() and .json()-->
+
+<div id = "container">
+    <h1>Let's access some data :)</h1>
+    <div class = "mflex">
+    <div class = "mButton" id = "accessJsonfile" >access json data</div>
+    </div>
+
+</div>
+
+<script>
+    window.onload = function(){
+    }
+</script>
+</body>
+</html>
