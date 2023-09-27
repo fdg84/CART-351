@@ -114,13 +114,57 @@
     ANIMATING TEXT </div>
 </div>
 
-<div id = "a" class = "targetBoxes-start"> </div>
-<div id = "c" class = "targetBoxes-start"> </div>
-<div id = "b" class = "targetBoxes-start"> </div>
+<div id = "a" class = "targetBoxes targetBoxes-start"> </div>
+<div id = "c" class = "targetBoxes targetBoxes-start"> </div>
+<div id = "b" class = "targetBoxes targetBoxes-start"> </div>
 
 <div id = "c" class = "targetBoxes-start"> </div>
 </body>
    
+<script>
+//     const observer = new IntersectionObserver( 
+//         function(entries){
+//             entries.forEach(entry =>{
+//                 const intersecting = entry.isIntersecting;
+//                 if(intersecting ===true){
+//                     entry.target.classList.add("textTransition");
+//                     entry.target.classList.remove("textTransition-off");
+//                 }
+
+//                 else{
+//                     entry.target.classList.remove("textTransition");
+//                     entry.target.classList.add("textTransition-off");
+// }
+
+//             })
+//         }
+//     )
+
+//     observer.observe(document.getElementById("targetText"));
+
+const observer = new IntersectionObserver(function(entries){
+
+    entries.forEach(entry=>{
+        const intersecting = entry.isIntersecting;
+        if(intersecting){
+            entry.target.classList.add("targetBoxesTransition");
+            entry.target.classList.remove("targetBoxes-start");
+        }
+
+        else{
+            entry.target.classList.add("targetBoxes-start");
+            entry.target.classList.remove("targetBoxesTransition");
+        }
+    })
+})
+
+const allBoxes = document.querySelectorAll('.targetBoxes');
+allBoxes.forEach(el=>{
+    observer.observe(el)
+})
+
+
+</script>
     
 
 </html>
