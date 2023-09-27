@@ -43,7 +43,88 @@
 
 <script>
     window.onload = function(){
+
+      let bookJsonString =
+{"Title": "One Flew Over the Cuckoo's Nest",
+    "Author": "Ken Kesey",
+    "Genre": "Psychological Fiction",
+    "Edition_Years": [1983, "1998", "2008","2014"], //nums and strings
+    "Book_Image":"resources/banana.jpg",
+    "Detail": {
+        "Publisher": "Berkley; Reprint edition",
+        "Publication_Year": 1963,
+        "ISBN": "0451163966",
+        "Language": "English",
+        "Pages": 272
     }
+  }
+  let pTag = document.createElement("p");
+   document.getElementById("output").appendChild(pTag)
+   pTag.textContent = `Author : ${bookJsonString.Author}`
+
+   let editionArray = bookJsonString.Edition_Years;
+   //make a for loop and iterate 
+   for(edition of editionArray){
+    console.log(edition);
+ 
+    let pTag = document.createElement("p");
+    document.getElementById("output").appendChild(pTag)
+    pTag.textContent = `Edition : ${edition}`;
+
+}
+//access the detail object
+let detailObject = bookJsonString["Detail"];
+ 
+ //access ....
+ console.log(detailObject);
+
+ for(prop in detailObject){
+  let pTag = document.createElement("p");
+  document.getElementById("output").appendChild(pTag)
+  pTag.textContent = `${prop} : ${detailObject[prop]}`;
+
+ }
+
+ let bookJsonArray =
+ [ {"Title": "One Flew Over the Cuckoo's Nest",
+      "Author": "Ken Kesey",
+      "Genre": "Psychological Fiction",
+      "Edition_Years": [1983, "1998", "2008","2014"], //nums and strings
+      "Book_Image":"resources/banana.jpg",
+      "Detail": {
+          "Publisher": "Berkley; Reprint edition",
+          "Publication_Year": 1963,
+          "ISBN": "0451163966",
+          "Language": "English",
+          "Pages": 272
+      }
+    },
+    {"Title": "One Flew Over the Cuckoo's Nest Two",
+      "Author": "Ken Kesey",
+      "Genre": "Psychological Fiction",
+      "Edition_Years": [1983, "1998", "2008","2014"], //nums and strings
+      "Book_Image":"resources/banana.jpg",
+      "Detail": {
+          "Publisher": "Berkley; Reprint edition",
+          "Publication_Year": 1963,
+          "ISBN": "0451163966",
+          "Language": "English",
+          "Pages": 272
+      }
+    }
+    ]
+    //ARRAY of OBJECTS
+    console.log(bookJsonArray[0])
+    for(let i =0; i<bookJsonArray.length; i++){
+        let pTag = document.createElement("p");
+    document.getElementById("output").appendChild(pTag)
+    pTag.textContent = `${i} : ${bookJsonArray[i].Title}`;
+ 
+    }
+}
+    
+
+    
 </script>
 </body>
 </html>
