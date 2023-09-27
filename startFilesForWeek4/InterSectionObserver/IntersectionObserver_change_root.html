@@ -78,6 +78,46 @@ div.scroll {
             <div id = "intersectingEl" class = "screen_c"><p>ELEMENT B</p> </div> 
             <div class = "after"></div>
         </div>
-          </body>
+    </body>
+
+    <script>
+      window.onload = function(){
+          document.getElementById("scroller").addEventListener("scroller",function(e){
+
+            console.log(e.target.scrollTop);
+            
+            document.getElementById('intersectingEl').style.top = `${700-e.target.scrollTop}px;`
+
+          })
+
+          let rootEl = document.getElementById("scroller");
+
+          const observer = new IntersectionObserver(entries =>{
+            
+              entries.forEach( entry =>{
+                entry.target.innerText = `${Math.round(entry.intersectionRatio*100)}%`
+
+                  const intersecting = entry.isIntersecting; // true or false
+                  if(intersecting ===true){
+                    entry.target.style.backgroundColor = "#FF0000";
+                  }
+
+                  else{
+                    entry.target.style.backgroundColor = "#FFFFFF";
+                  }
+
+              }) //forEach
+
+          } //entries
+          ,
+          {root: rootEl, threshold:1}
+          
+          )
+
+          observer.observe(document.getElementById("intersectingEl"));
+
+      }
+    </script>
+
 
 </html>
