@@ -5,36 +5,91 @@
     <link rel="stylesheet" href="style.css">
     <title>EYES</title>
 
-   <!-- 
+<!-- 
 
-  Exercise inspired / modified from:
+  CART 351
+  Francis Ouellette
+
+  +++ Click background to randomize colors
+  +++ Eyes follow cursor & red center fades (x/y axis)
+
+  Exercise inspired by:
   https://www.youtube.com/watch?v=AixAmLWzXYg&ab_channel=DarkCode 
-  
-  Click background to randomize colors
-  Eyes follow cursor & red center fades (x/y axis)
+
+  +++ Adapted from class examples
 
 -->
+
+<style>
+
+h1{
+      text-align: center;
+    }
+ 
+    .wrapper{
+        display:flex;
+    }
+
+    .textTransition-off{
+        font-size:80px;
+        text-align: center;
+        opacity:0;
+    }
+
+    .textTransition{
+        font-size:80px;
+        text-align: center;
+        opacity:1;
+   
+        background-color: white;
+        animation-name: textAni;
+        animation-duration: 8s;
+        transform:translateY(-500px);
+    }
+
+    @keyframes textAni {
+        from {background-color: red;opacity:0; transform:translateY(0px);}
+        to {background-color: rgb(236, 236, 189);opacity:1; transform:translateY(-100px);}
+    }
+ 
+    @keyframes aniBox {
+        from {background-color: rgb(7, 7, 7);}
+        to {background-color: rgb(23, 195, 234);}
+    }
+
+</style>
 
   </head>
   <body>
 
     <div class="eyes">
       <div class="eye">
-        <div class="ball"></div>
+          <div class="ball"></div>
       </div>
       <div class="eye">
           <div class="ball"></div>
       </div>
     </div>
 
+    <div class = "textTransition-off" id="targetText">
+      Click The Page! </div>
+  </div>
+  
+  <div id = "a" class = "targetBoxes targetBoxes-start"> </div>
+  <div id = "c" class = "targetBoxes targetBoxes-start"> </div>
+  <div id = "b" class = "targetBoxes targetBoxes-start"> </div>
+  
+  <div id = "c" class = "targetBoxes-start"> </div>
+
     <script>
+
       var balls = document.getElementsByClassName("ball");
       document.onmousemove = function(){
-        var x = event.clientX * 100 / window.innerWidth
-        var y = event.clientY * 100 / window.innerHeight
+          var x = event.clientX * 100 / window.innerWidth
+          var y = event.clientY * 100 / window.innerHeight
         
         for(var i=0;i<2;i++){
-          console.log("X:", x, "Y:", y)
+          //console.log("X:", x, "Y:", y)
           balls[i].style.backgroundColor = 'rgb(' + "255" + ',' + (x+y)%255 + ',' + (x+y)%255 + ')';  
           balls[i].style.left = x + "%";
           balls[i].style.top = y + "%";
@@ -42,7 +97,7 @@
         }
       }
       
-      document.onclick = function() {
+      document.onclick = function(){
         console.log("I click")
         var r = Math.ceil(Math.random() * 255)
         var g = Math.ceil(Math.random() * 255)
@@ -50,8 +105,29 @@
         console.log(r,g,b)
         document.body.style.backgroundColor = 'rgb(' + r + ',' + b + ',' + g + ')';  
       }       
+      
+const observer = new IntersectionObserver( 
+        function(entries){
+            entries.forEach(entry =>{
+                const intersecting = entry.isIntersecting;
+                if(intersecting ===true){
+                    entry.target.classList.add("textTransition");
+                    entry.target.classList.remove("textTransition-off");
+                }
+
+                else{
+                    entry.target.classList.remove("textTransition");
+                    entry.target.classList.add("textTransition-off");
+}
+
+            })
+        }
+    )
+
+    observer.observe(document.getElementById("targetText"));
 
     </script>
-
   </body>
 </html>
+
+
