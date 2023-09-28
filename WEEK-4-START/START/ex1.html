@@ -81,10 +81,59 @@ h1{
     <div class = "mButton" id = "accessJsonfile" >access json data</div>
     </div>
 
+    <div id = "parent"></div>
+
 </div>
+
+<script src = "DemoShape.js"></script>
 
 <script>
     window.onload = function(){
+
+document.querySelector("#accessJsonfile").addEventListener("click",function(){
+  console.log("click");
+  fetch('json-files/shapes.json')
+  .then(response=>response.json())
+  .then(data=>{
+    displayShapes(data);
+    console.log(data)});
+})
+
+let demoShapes = [];
+let myAni;
+function displayShapes(data){
+  demoShapes =[];
+
+  cancelAnimationFrame(myAni);
+
+  document.getElementById("parent").innerHTML ="";
+
+  for (let i=0; i< data.length; i++){
+    demoShapes.push(new DemoShape(
+      data [i].x,
+      data [i].y,
+      data [i].w,
+      data [i].h,
+      data [i].color,
+      document.getElementById("parent")
+    
+    ))
+  }
+
+myAni = requestAnimationFrame(animate);
+
+function animate(){
+  for (let i = 0; i<demoShapes.length;i++){
+  demoShapes[i].update();
+  demoShapes[i].checkScreenBounds();
+}
+myAni = requestAnimationFrame(animate);
+}
+
+
+
+}
+
     }
 </script>
 </body>
