@@ -2,8 +2,12 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href=""style.css">
+    <link rel="stylesheet" href="style.css">
     <title>EYES</title>
+
+   <!-- Eyes follow mouse cursor using HTML CSS & Javascript
+   https://www.youtube.com/watch?v=AixAmLWzXYg&ab_channel=DarkCode -->
+
   </head>
   <body>
 
@@ -11,13 +15,36 @@
       <div class="eye">
         <div class="ball"></div>
       </div>
-
-      <div class="eyes">
-        <div class="eye">
+      <div class="eye">
           <div class="ball"></div>
-        </div>
-
+      </div>
     </div>
+
+    <script>
+      var balls = document.getElementsByClassName("ball");
+      document.onmousemove = function(){
+        var x = event.clientX * 100 / window.innerWidth
+        var y = event.clientY * 100 / window.innerHeight
+        
+        for(var i=0;i<2;i++){
+          console.log("X:", x, "Y:", y)
+          balls[i].style.backgroundColor = 'rgb(' + "255" + ',' + (x+y)%255 + ',' + (x+y)%255 + ')';  
+          balls[i].style.left = x + "%";
+          balls[i].style.top = y + "%";
+          balls[i].style.transform = "translate(-"+x+ "%"+",-"+y + "%"+")";
+        }
+      }
+      
+      document.onclick = function() {
+        console.log("I click")
+        var r = Math.ceil(Math.random() * 255)
+        var g = Math.ceil(Math.random() * 255)
+        var b = Math.ceil(Math.random() * 255)
+        console.log(r,g,b)
+        document.body.style.backgroundColor = 'rgb(' + r + ',' + b + ',' + g + ')';  
+      }       
+
+    </script>
 
   </body>
 </html>
