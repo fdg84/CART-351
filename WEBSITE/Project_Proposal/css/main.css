@@ -1,32 +1,32 @@
 
+h1{
+  text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+
 h2{
-  text-align: center;
-  color:purple;
+  text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 120px;
 }
 
-ul{
-  color:white;
-  background:grey;
-  width:90%;
-}
-li a{
-  background:purple;
-  color:white;
-  display:block;
-  margin-top:2px;
-  padding:2px;
-}
-#toggleImage{
-  width:100px;
-  color:purple;
-  cursor:pointer;
+li{
+  text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
 }
 
-#toggleImage:hover{
-  color:grey;
-  background:black;
+li {}
+
+a{
+  text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
 }
-#imageContainer{
-  margin-top:20px;
-  display:block;
+
+p {
+  text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
 }
