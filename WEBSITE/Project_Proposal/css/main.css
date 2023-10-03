@@ -2,25 +2,7 @@
 h1{
   text-align: left;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 20px;
-}
-
-h2{
-  text-align: left;
-  font-family: Arial, Helvetica, sans-serif;
   font-size: 120px;
-}
-
-li{
-  text-align: justify;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;  
-}
-
-a{
-  text-align: justify;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
 }
 
 p {
@@ -33,4 +15,8 @@ div {
   text-align: center;
   width:1000px;
   margin-left:20px;
+  }
+
+  img {
+    width: 1500px;
   }
