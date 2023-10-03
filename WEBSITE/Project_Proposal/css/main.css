@@ -1,0 +1,32 @@
+
+h2{
+  text-align: center;
+  color:purple;
+}
+
+ul{
+  color:white;
+  background:grey;
+  width:90%;
+}
+li a{
+  background:purple;
+  color:white;
+  display:block;
+  margin-top:2px;
+  padding:2px;
+}
+#toggleImage{
+  width:100px;
+  color:purple;
+  cursor:pointer;
+}
+
+#toggleImage:hover{
+  color:grey;
+  background:black;
+}
+#imageContainer{
+  margin-top:20px;
+  display:block;
+}
