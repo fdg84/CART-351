@@ -272,11 +272,11 @@ h1{
             console.log(locationValue);
 
             let api_key = "eAl2E5BkqwOBqnNFtlhisatq5qKbmsOp";
-                let url = `https://www.mapquestapi.com/geocoding/v1/address?key=${api_key = "eAl2E5BkqwOBqnNFtlhisatq5qKbmsOp"}&location=Washington,DC`;
+                let url = `https://www.mapquestapi.com/geocoding/v1/address?key=${api_key = "eAl2E5BkqwOBqnNFtlhisatq5qKbmsOp"}&location=${locationValue}`;
 
                 fetch(url)
                 .then(res=>res.json())
-                .then(jsonResult=>console.log(jsonResult.results[0].locations[0]))
+                .then(jsonResult=>outputTheMap(jsonResult.results[0].locations[0],api_key))
 
             //geocode
             //https://developer.mapquest.com/documentation/geocoding-api/address/get/
@@ -297,7 +297,9 @@ h1{
             mapContainer.id = "map";
             mapContainer.classList.add("mapClass");
             pContainer.appendChild(mapContainer);
+
          //https://developer.mapquest.com/documentation/mapquest-js/v1.3/
+
              L.mapquest.key = api_key;
              // 'map' refers to a <div> element with the ID map
                 L.mapquest.map('map', {
