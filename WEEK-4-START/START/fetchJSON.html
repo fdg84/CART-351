@@ -269,8 +269,15 @@ h1{
             console.log("mapquest");
             if(document.getElementById("location").value!==''){
             let locationValue = document.getElementById("location").value;
+            console.log(locationValue);
 
             let api_key = "eAl2E5BkqwOBqnNFtlhisatq5qKbmsOp";
+                let url = `https://www.mapquestapi.com/geocoding/v1/address?key=${api_key = "eAl2E5BkqwOBqnNFtlhisatq5qKbmsOp"}&location=Washington,DC`;
+
+                fetch(url)
+                .then(res=>res.json())
+                .then(jsonResult=>console.log(jsonResult.results[0].locations[0]))
+
             //geocode
             //https://developer.mapquest.com/documentation/geocoding-api/address/get/
 
@@ -312,7 +319,7 @@ h1{
             document.getElementById("catContainer").innerHTML ='';
             document.getElementById("catContainer").style.display ="block";
 
-            fetch('https://api.thecatapi.com/v1/images/search')
+            fetch('https://api.thecatapi.com/v1/images/search?limit=10')
             .then(res=>res.json())
             .then(data=>outputCats(data))
 
