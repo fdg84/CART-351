@@ -312,6 +312,10 @@ h1{
             document.getElementById("catContainer").innerHTML ='';
             document.getElementById("catContainer").style.display ="block";
 
+            fetch('https://api.thecatapi.com/v1/images/search')
+            .then(res=>res.json())
+            .then(data=>outputCats(data))
+
         }
 
          /* OUTPUT CAT DATA */
@@ -350,7 +354,7 @@ h1{
             .then(res=>res.json())
             .then(data=>
             {
-                console.log(data)
+                console.log(data);
                 outputTheData(data)
             }
             )
