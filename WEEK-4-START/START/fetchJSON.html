@@ -345,9 +345,18 @@ h1{
             console.log("access data");
             document.getElementById("dataContainer").innerHTML ="";
             document.getElementById("dataContainer").style.display ="block";
-        }
 
-       
+            fetch('json-files/books.json')
+            .then(res=>res.json())
+            .then(data=>
+            {
+                console.log(data)
+                outputTheData(data)
+            }
+            )
+        }
+     
+                
     
 
     //lots of for loops and key-value pairs that need to be examined ///
