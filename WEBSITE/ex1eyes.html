@@ -1,69 +1,133 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>FRANK'S NEW WEBSITE</title>
-  <link rel="stylesheet" type="text/css" href="css/main.css">
-</head>
-<body>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style1.css">
+    <title>EYES</title>
 
-  <!-- background image / w3schools --> 
-  <style>
-    body {
-      background-image: url('assets/images/purple.jpg'); 
+<!-- 
+
+  CART 351
+  Francis Ouellette
+
+  +++ Click background to randomize colors
+  +++ Eyes follow cursor & red center fades (x/y axis)
+
+  Exercise inspired by:
+  https://www.youtube.com/watch?v=AixAmLWzXYg&ab_channel=DarkCode 
+
+  +++ Adapted from class examples
+
+-->
+
+<style>
+
+h1{
+      text-align: center;
     }
-    </style>
+ 
+    .wrapper{
+        display:flex;
+    }
 
-    <!-- the header div -->
-  <header>
-    <h1 style="color:white;">Francis Ouellette</h1>
-    <p style="color:rgb(186, 191, 216);">CART 351 WEBSITE</p>
-    <p style="color:white;"><em> :: Description :: </em></p>
-    <p style="color:rgb(186, 191, 216);">List of links to the exercises and projects.</p>
-  <header>
-  <!-- the main div -->
-  <main>
-    <ul></ul>
-      <li style="color:#88f1ff;"> <em> :: Exercises :: </em>
-        <ul>
-          <li><a href="https://github.com/fdg84/CART-351/tree/main/Exercise_1_Eyes"> LINK to Exercise 1</a></li>
-          <li><a href="#"> LINK to Exercise 2</a></li>
-          <li><a href="#"> LINK to Exercise xx</a></li>
-        </ul></ul>
-    </li>
+    .textTransition-off{
+        font-size:80px;
+        text-align: center;
+        opacity:0;
+    }
 
-    <li style="color:#88f1ff;"> <em> :: Semester Project (MEMORY CLOUDS) :: </em>
-      <ul>
-        <li><a href="https://github.com/fdg84/CART-351/tree/main/WEBSITE/Project_Proposal"> LINK to Project Proposal</a> </li>
-        <li><a href="#"> LINK to Project Prototype</a></li>
-        <li><a href="#"> LINK to Final Prototype Documentation</a></li>
-         <li><a href="#"> LINK to Final Project</a></li>
-         <li><a href="#"> LINK to Final Project Documentation</a></li>
-      </ul></ul>
-    </li>
+    .textTransition{
+        font-size:80px;
+        text-align: center;
+        opacity:1;
+   
+        background-color: white;
+        animation-name: textAni;
+        animation-duration: 8s;
+        transform:translateY(-500px);
+    }
 
-    <li style="color:#88f1ff;"> <em> :: Reflections :: </em>
-        <ul>
-          <li><a href="#"> link to reflection 1:</a></li>
-            <li><a href="#">...</a></li>
-        </ul></ul>
-    </li>
+    @keyframes textAni {
+        from {background-color: red;opacity:0; transform:translateY(0px);}
+        to {background-color: rgb(236, 236, 189);opacity:1; transform:translateY(-100px);}
+    }
+ 
+    @keyframes aniBox {
+        from {background-color: rgb(7, 7, 7);}
+        to {background-color: rgb(23, 195, 234);}
+    }
 
-    <li style="color:#88f1ff;"> <em> :: Presentation :: </em>
-        <ul>
-          <li><a href="#"> link to presentation slides</a></li>
-           <li><a href="#"> link to presentation documentation</a></li>
-            <li><a href="#">...</a></li>
-        </ul></ul>
-    </li>
+</style>
 
-    </ul>
-</main>
-  <!-- the footer div -->
-<footer>
+  </head>
+  <body>
 
-<p style="color:rgb(186, 191, 216);">HELLO <strong>WORLD</strong> !!! <em> PEACE </em> <strong>LOVE</strong> UNITY</p>
-<img src="assets/images/frank.jpg">
+    <div class="eyes">
+      <div class="eye">
+          <div class="ball"></div>
+      </div>
+      <div class="eye">
+          <div class="ball"></div>
+      </div>
+    </div>
 
-</footer>
-</body>
+    <div class = "textTransition-off" id="targetText">
+      Click The Page! </div>
+  </div>
+  
+  <div id = "a" class = "targetBoxes targetBoxes-start"> </div>
+  <div id = "c" class = "targetBoxes targetBoxes-start"> </div>
+  <div id = "b" class = "targetBoxes targetBoxes-start"> </div>
+  
+  <div id = "c" class = "targetBoxes-start"> </div>
+
+    <script>
+
+      var balls = document.getElementsByClassName("ball");
+      document.onmousemove = function(){
+          var x = event.clientX * 100 / window.innerWidth
+          var y = event.clientY * 100 / window.innerHeight
+        
+        for(var i=0;i<2;i++){
+          //console.log("X:", x, "Y:", y)
+          balls[i].style.backgroundColor = 'rgb(' + "255" + ',' + (x+y)%255 + ',' + (x+y)%255 + ')';  
+          balls[i].style.left = x + "%";
+          balls[i].style.top = y + "%";
+          balls[i].style.transform = "translate(-"+x+ "%"+",-"+y + "%"+")";
+        }
+      }
+      
+      document.onclick = function(){
+        console.log("I click")
+        var r = Math.ceil(Math.random() * 255)
+        var g = Math.ceil(Math.random() * 255)
+        var b = Math.ceil(Math.random() * 255)
+        console.log(r,g,b)
+        document.body.style.backgroundColor = 'rgb(' + r + ',' + b + ',' + g + ')';  
+      }       
+      
+const observer = new IntersectionObserver( 
+        function(entries){
+            entries.forEach(entry =>{
+                const intersecting = entry.isIntersecting;
+                if(intersecting ===true){
+                    entry.target.classList.add("textTransition");
+                    entry.target.classList.remove("textTransition-off");
+                }
+
+                else{
+                    entry.target.classList.remove("textTransition");
+                    entry.target.classList.add("textTransition-off");
+}
+
+            })
+        }
+    )
+
+    observer.observe(document.getElementById("targetText"));
+
+    </script>
+  </body>
 </html>
+
+
