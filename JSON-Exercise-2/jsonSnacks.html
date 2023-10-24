@@ -20,13 +20,10 @@
   #output{
     background: #c0eb70;
     width:85%;
-
     color:white;
     padding-left:10px;
     padding-top:10px;
     padding-bottom:10px;
-
-
   }
 
 </style>
@@ -60,21 +57,33 @@
     for(snacks of snacksArray){
     console.log(snacks);
 
-  let feelingsArray = snacksJsonString.Snacks;
+  let feelingsArray = snacksJsonString.Feelings;
     //make a for loop and iterate 
     for(feelings of feelingsArray){
     console.log(feelings);
 
-  let timesArray = snacksJsonString.Snacks;
+  let timesArray = snacksJsonString.Times;
     //make a for loop and iterate 
     for(times of timesArray){
     console.log(times);
  
-  // let pTag = document.createElement("p");
-  //   document.getElementById("output").appendChild(pTag)
-  //   pTag.textContent = `Edition : ${edition}`;
+  let pTag = document.createElement("p");
+    document.getElementById("output").appendChild(pTag)
+    pTag.textContent = `Snacks : ${snacks}`;
 
 }
+
+// //access the detail object
+// let detailObject = bookJsonString["Detail"];
+ 
+// //access ....
+// console.log(detailObject);
+
+// for(prop in detailObject){
+//   let pTag = document.createElement("p");
+//   document.getElementById("output").appendChild(pTag)
+//   pTag.textContent = `${prop} : ${detailObject[prop]}`;
+//   }
 
  let snacksJsonArray =
  [ 
@@ -99,18 +108,24 @@
       "Times": ["10:30", "15:50"]
       },
     ]
+
     //ARRAY of OBJECTS
     console.log(snacksJsonArray[0])
     for(let i =0; i<snacksJsonArray.length; i++){
         let pTag = document.createElement("p");
     document.getElementById("output").appendChild(pTag)
-    pTag.textContent = `${i} : ${snacksJsonArray[i].Title}`;
- 
+    pTag.textContent = `${i} : ${snacksJsonArray[i].Day}`;
     }
 }
     
+<select>
+      <option value="DAYS">Select a Day</option>
+      <option value="Monday">Monday</option>
+      <option value="Tuesday">Tuesday</option>
+      <option value="Wednesday">Wednesday</option>
+      <option value="Thursday">Thursday</option>
+</select>
 
-    
 </script>
 </body>
 </html>
