@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>DAILY SNACKS</title>
+  <style>
+  body{
+    margin:0;
+    padding:0;
+    font-family:Arial, Helvetica, sans-serif;
+  }
+  #container{
+    background: #a6ff00;
+    width:70vw;
+    margin-top:50px;
+    margin-left:15vw;
+    min-height:400px;
+    padding:10px;
+  }
+  #output{
+    background: #8bd3a3;
+    width:85%;
+    color:white;
+    padding-left:10px;
+    padding-top:10px;
+    padding-bottom:10px;
+  }
+
+</style>
+
+</head>
+<body>
+    <!-- do a basic fetch -- look both at .text() and .json()-->
+
+<div id = "container">
+    <h1>DAILY SNACKS</h1>
+    <div id="output"></div> </div>
+
+</div>
+
+<script>
+    window.onload = function(){
+
+      let bookJsonString =
+{   "Title": "Monday",
+    "Morning": ["Banana", "Healthy", "9:30"],
+    "Afternoon": ["Toast", "Bland", "14:10"],
+    "Night": ["Chips", "Tasty", "21:40"],
+    "Edition_Years": ["1998", "2008","2014"]
+   
+  }
+  let pTag = document.createElement("p");
+   document.getElementById("output").appendChild(pTag)
+   pTag.textContent = `Morning : ${bookJsonString.Morning}`
+
+   let editionArray = bookJsonString.Edition_Years;
+   //make a for loop and iterate 
+   for(edition of editionArray){
+    console.log(edition);
+ 
+    let pTag = document.createElement("p");
+    document.getElementById("output").appendChild(pTag)
+    pTag.textContent = `Edition : ${edition}`;
+
+}
+//access the detail object
+let detailObject = bookJsonString["Detail"];
+ 
+ //access ....
+ console.log(detailObject);
+
+ for(prop in detailObject){
+  let pTag = document.createElement("p");
+  document.getElementById("output").appendChild(pTag)
+  pTag.textContent = `${prop} : ${detailObject[prop]}`;
+
+ }
+
+ let bookJsonArray =
+ [ {"Title": "Monday",
+    "Morning": ["Banana", "Healthy", "9:30"],
+    "Afternoon": ["Toast", "Bland", "14:10"],
+    "Night": ["Chips", "Tasty", "21:40"],
+    "Edition_Years": ["1998", "2008","2014"]
+    },
+    {"Title": "Tuesday",
+    "Morning": ["Banana", "Healthy", "9:30"],
+    "Afternoon": ["Toast", "Bland", "14:10"],
+    "Night": ["Chips", "Tasty", "21:40"],
+    "Edition_Years": ["1998", "2008","2014"]
+    }
+    
+    ]
+    //ARRAY of OBJECTS
+    console.log(bookJsonArray[0])
+    for(let i =0; i<bookJsonArray.length; i++){
+        let pTag = document.createElement("p");
+    document.getElementById("output").appendChild(pTag)
+    pTag.textContent = `${i} : ${bookJsonArray[i].Title}`;
+ 
+    }
+}
+    
+
+    
+</script>
+</body>
+</html>
