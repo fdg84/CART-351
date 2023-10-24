@@ -3,6 +3,15 @@
 
 <head>
   <title>DAILY SNACKS</title>
+
+  <style>
+    body  {
+      /* https://i.etsystatic.com/19943283/r/il/1a4e80/3130929444/il_794xN.3130929444_2ulp.jpg */
+      background-image: url("resources/veggie.jpg");
+      background-color: #cccccc;
+    }
+    </style>
+
   <style>
   body{
     margin:0;
@@ -28,6 +37,17 @@
 
 </style>
 
+<!-- <p>Select a Day</p>
+
+<select id="ui-select-native" multiple data-placeholder="Choose an Option" data-bind="options: availableOptions, selectedOptions: nativeSelected"></select>
+<p>
+  Snack Description
+</p>
+<ul data-bind="foreach: nativeSelected">
+  <li data-bind="text: $data"></li>
+</ul> -->
+
+
 </head>
 <body>
     <!-- do a basic fetch -- look both at .text() and .json()-->
@@ -41,42 +61,86 @@
 <script>
     window.onload = function(){
 
-      let bookJsonString =
-{   "Title": "Monday",
-    "Morning": ["Banana", "Healthy", "9:30"],
-    "Afternoon": ["Toast", "Bland", "14:10"],
-    "Night": ["Chips", "Tasty", "21:40"],
-    "Edition_Years": ["1998", "2008","2014"]
-   
+let snacksJsonString =
+{   "Title": "DAY 1",
+    "Day": "Monday",
+    "Morning": ["Banana", " Healthy", " 9:30"],
+    "Afternoon": ["Toast", " Bland", " 14:10"],
+    "Night": ["Chips", " Tasty", " 21:40"],
+    "Day_1": ["Morning", "Afternoon", "Night"]
   }
-  let pTag = document.createElement("p");
-   document.getElementById("output").appendChild(pTag)
-   pTag.textContent = `Morning : ${bookJsonString.Morning}`
 
-   let editionArray = bookJsonString.Edition_Years;
-   //make a for loop and iterate 
-   for(edition of editionArray){
-    console.log(edition);
+//   let snacksJsonString =
+// {   "Title": "DAY 2",
+//     "Day": "Tuesday",
+//     "Morning": ["Banana", " Healthy", " 9:30"],
+//     "Afternoon": ["Toast", " Bland", " 14:10"],
+//     "Night": ["Chips", " Tasty", " 21:40"],
+//     "Day_1": ["Morning", "Afternoon", "Night"]
+//   }
+
+//   let snacksJsonString =
+// {   "Title": "DAY 3",
+//     "Day": "Wednesday",
+//     "Morning": ["Banana", " Healthy", " 9:30"],
+//     "Afternoon": ["Toast", " Bland", " 14:10"],
+//     "Night": ["Chips", " Tasty", " 21:40"],
+//     "Day_1": ["Morning", "Afternoon", "Night"]
+//   }
+
+//   let snacksJsonString =
+// {   "Title": "DAY 4",
+//     "Day": "Thursday",
+//     "Morning": ["Banana", " Healthy", " 9:30"],
+//     "Afternoon": ["Toast", " Bland", " 14:10"],
+//     "Night": ["Chips", " Tasty", " 21:40"],
+//     "Day_1": ["Morning", "Afternoon", "Night"]
+//   }
+
+//   let snacksJsonString =
+// {   "Title": "DAY 5",
+//     "Day": "Friday",
+//     "Morning": ["Banana", " Healthy", " 9:30"],
+//     "Afternoon": ["Toast", " Bland", " 14:10"],
+//     "Night": ["Chips", " Tasty", " 21:40"],
+//     "Day_1": ["Morning", "Afternoon", "Night"]
+//   }
+
+let pTag = document.createElement("p");
+  document.getElementById("output").appendChild(pTag)
+  pTag.textContent = `Morning : ${snacksJsonString.Morning}`
+
+  // let pTag = document.createElement("p");
+  // document.getElementById("output").appendChild(pTag)
+  // pTag.textContent = `Afternoon : ${snacksJsonString.Afternoon}`
+
+  // let pTag = document.createElement("p");
+  // document.getElementById("output").appendChild(pTag)
+  // pTag.textContent = `Night : ${snacksJsonString.Night}`
+
+let day1Array = snacksJsonString.Day_1;
+  //make a for loop and iterate 
+  for(day1 of day1Array){
+  console.log(day1);
  
-    let pTag = document.createElement("p");
-    document.getElementById("output").appendChild(pTag)
-    pTag.textContent = `Edition : ${edition}`;
+let pTag = document.createElement("p");
+  document.getElementById("output").appendChild(pTag)
+  pTag.textContent = `Day_1 : ${day1}`;
 
 }
 //access the detail object
-let detailObject = bookJsonString["Detail"];
+let detailObject = snacksJsonString["Detail"];
  
- //access ....
- console.log(detailObject);
+//access ....
+console.log(detailObject);
 
- for(prop in detailObject){
+for(prop in detailObject){
   let pTag = document.createElement("p");
   document.getElementById("output").appendChild(pTag)
   pTag.textContent = `${prop} : ${detailObject[prop]}`;
-
  }
 
- let bookJsonArray =
+ let snacksJsonArray =
  [ {"Title": "Monday",
     "Morning": ["Banana", "Healthy", "9:30"],
     "Afternoon": ["Toast", "Bland", "14:10"],
@@ -89,19 +153,35 @@ let detailObject = bookJsonString["Detail"];
     "Night": ["Chips", "Tasty", "21:40"],
     "Edition_Years": ["1998", "2008","2014"]
     }
+    // {"Title": "Wednesday",
+    // "Morning": ["Banana", "Healthy", "9:30"],
+    // "Afternoon": ["Toast", "Bland", "14:10"],
+    // "Night": ["Chips", "Tasty", "21:40"],
+    // "Edition_Years": ["1998", "2008","2014"]
+    // }
+    // {"Title": "Thursday",
+    // "Morning": ["Banana", "Healthy", "9:30"],
+    // "Afternoon": ["Toast", "Bland", "14:10"],
+    // "Night": ["Chips", "Tasty", "21:40"],
+    // "Edition_Years": ["1998", "2008","2014"]
+    // }
+    // {"Title": "Friday",
+    // "Morning": ["Banana", "Healthy", "9:30"],
+    // "Afternoon": ["Toast", "Bland", "14:10"],
+    // "Night": ["Chips", "Tasty", "21:40"],
+    // "Edition_Years": ["1998", "2008","2014"]
+    // }
     
     ]
     //ARRAY of OBJECTS
-    console.log(bookJsonArray[0])
-    for(let i =0; i<bookJsonArray.length; i++){
+    console.log(snacksJsonArray[0])
+    for(let i =0; i<snacksJsonArray.length; i++){
         let pTag = document.createElement("p");
     document.getElementById("output").appendChild(pTag)
-    pTag.textContent = `${i} : ${bookJsonArray[i].Title}`;
+    pTag.textContent = `${i} : ${snacksJsonArray[i].Title}`;
  
     }
 }
-    
-
     
 </script>
 </body>

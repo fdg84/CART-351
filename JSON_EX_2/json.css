@@ -1,0 +1,9 @@
+.chosen-container-multi .chosen-choices {
+    height: 30px;
+    max-height: 30px;
+    overflow-y: auto;  
+  }
+  
+  #ui-select-native {
+    width: 200px;
+  }
