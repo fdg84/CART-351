@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> FETCH JSON </title> 
+  <style>
+  body{
+    margin:0;
+    padding:0;
+    font-family:Arial, Helvetica, sans-serif;
+  }
+  #container{
+    background: #6699ff;
+    width:70vw;
+    margin-top:50px;
+    margin-left:15vw;
+    min-height:400px;
+    padding:10px;
+}
+h1{
+    padding:5px;
+    text-align: center;
+    background:rgba(255,255,255,.5);
+}
+.mButton{
+    width:max-content;
+    padding:5px;
+    background-color: yellow;
+    color:#292929;
+    font-size: 18px;
+    border-radius: 2px;
+    cursor: pointer;
+
+}
+.mButton:hover{
+    background-color: #292929;
+    color:yellow;
+}
+
+.mflex{
+    display:flex;
+    flex-wrap:wrap;
+    flex-basis:50%;
+    width:100%;
+    justify-content:space-evenly;
+}
+
+#wrapper{
+    width:90%;
+  
+    display:flex;
+    flex-wrap:wrap;
+    margin-left:2%;
+
+}
+.imageBox{
+
+    width:40%;
+ 
+}
+
+.imageBox_flex{
+
+    width:100%;
+    display:flex;
+    flex-wrap: wrap;
+
+
+}
+.imageBox img{
+    width:100%;
+    margin-top:24px;
+    margin-bottom:24px;
+}
+
+.imageBox_flex img{
+    width:20%;
+    margin:24px;
+    height:auto;
+
+}
+
+.textBox{
+    width:40%;
+}
+.mapClass{
+    width:70vw;
+    margin-top:50px;
+    min-height:200px;
+    background:orchid;
+}
+
+#weatherIn{
+    display:none;
+    background:orchid;
+    margin-top:24px;
+    height: max-content;
+    padding-bottom:10px;
+}
+
+#catContainer{
+    display:none;
+}
+
+#dataContainer{
+    display:none;
+}
+
+#mapQuestContainer{
+    display:none;
+}
+  </style> 
+
+
+  <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest-maps.js"></script>
+  <link type="text/css" rel="stylesheet" href="weatherStyle.css"/>
+  <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest-maps.css"/>
+
+
+</head>
+<body>
+
+<div id = "container">
+    <h1>Let's access some data :)</h1>
+    <div class = "mflex">
+    <div class = "mButton" id = "accessJsonfile" >access json data</div>
+    
+    <div class = "mButton" id = "data_via_catapi" >access cat data</div> 
+    <div class = "mButton" id = "data_via_weather" >access openweatherMap data</div> 
+    <div class = "mButton" id = "data_via_mapquest" >access mapquest data</div>
+    <input type ="text" placeholder= "location"  id = "location" /> 
+    </div>
+
+    <!-- unhide when accessing the openweather thingame-->
+    <div id = "weatherIn">
+    <div class = "flexSearch">
+
+        <div class = "searchCrit">
+          <p>Enter in your search city:</p>
+          <input type="text" id="citySearch" value="city" />
+          <input type="button" value="Search!" id="searchButton" />
+        </div>
+        
+        <div class = "searchCrit">
+          <p>Or search automatically by your geo location: </p>
+          <input type="button" value="Search!" id="buttonLocation" />
+        </div>
+        
+        </div>
+            <div id = "contentContainer"> </div>
+        
+      </div>
+
+      <div id ="catContainer"></div>
+      <div id ="mapQuestContainer"></div>
+      <div id ="dataContainer"></div>
+        
+
+</div>
+
+<script>
+    window.onload = function(){
+        document.querySelectorAll(".mButton").forEach(function(button){
+            console.log(button.id)
+            /*We will use the eval() function to call a function from 
+            its name stored in a string. The eval() function evaluates a 
+            string as JavaScript code. 
+            This allows us to call the function by passing the 
+            string containing its name as an argument to the eval() function.*/
+            button.addEventListener("click",eval(button.id))
+        })
+
+        /* reset of the DOM */
+        function reset(){
+            document.getElementById("weatherIn").style.display ="none";
+            document.getElementById("catContainer").style.display ="none";
+            document.getElementById("mapQuestContainer").style.display ="none";
+            document.getElementById("dataContainer").style.display ="none";
+        }
+        
+
+        /* callback for weather API */
+        /*******************************************/
+        function data_via_weather(){
+            reset();
+            console.log("weather");
+            document.getElementById("weatherIn").style.display ="block";
+            document.getElementById("citySearch").value ='';
+            let cContainer = document.getElementById("contentContainer");
+            cContainer.innerHTML ='';
+            //1:: add the event listeners
+            let myKey = "0bef928982350078b0d564afdd383f25";
+            document.querySelector("#searchButton").addEventListener("click",getWeatherByCity);
+            document.querySelector("#buttonLocation").addEventListener("click",getWeatherByLoc);
+
+            /**** get weather by user location **/
+            function getWeatherByLoc(){
+             console.log("get loc");
+
+             /**** TO FILL OUT *****/
+            }
+            /**** get weather by city input **/
+            //2...
+            function getWeatherByCity(){
+            console.log("get city");
+            let searchCity=  document.getElementById("citySearch").value;
+       
+            } 
+
+        } //data_via_weather
+
+    /* to display:: JUST for output ... is alot of code */
+      /*******************************************/
+     function outPutWeather(results,searchCity){
+        let cContainer = document.getElementById("contentContainer");
+        cContainer.innerHTML ='';
+        
+        let h2 = document.createElement("h2");
+        h2.style.width='100%';
+        h2.style.marginLeft= '24px';
+        h2.textContent = "results for:: "+ searchCity;
+        cContainer.appendChild(h2);
+
+
+        let imageDiv = document.createElement("div");
+        cContainer.appendChild(imageDiv);
+        
+        let textDiv = document.createElement("div");
+        cContainer.appendChild(textDiv);
+        
+
+        let weatherProp  = results.weather; //PART OF THE JSON OBJECT
+
+        for(let i=0; i<weatherProp.length; i++){
+            //get the object
+            let weatherObj = weatherProp[i];
+            console.log("in the array each prop in weatherProp:: ");
+            console.log(weatherObj);
+            // iterate through the key-value pairs for this object
+            //property -> key:
+            //weatherObj[property] is the value
+  
+            for (let property in weatherObj) {
+              //if it is the icon property-> get the image
+              if(property === "icon"){
+                let iconUrl = "http://openweathermap.org/img/w/" + weatherObj[property] + ".png";
+                let imageIcon =  document.createElement("img");
+                imageIcon.setAttribute("src", iconUrl);
+                imageDiv.appendChild(imageIcon);
+  
+              }
+              //not icon - so get the text
+              else{
+                 let sampleP = document.createElement("p");
+                 sampleP.textContent = property+":: "+ weatherObj[property];
+                textDiv.appendChild(sampleP);
+               }
+            }//for
+          } //iterate over array
+
+      
+     }
+    /* callback for MAP QUEST API */
+    /*******************************************/
+        function data_via_mapquest(){
+            reset();
+            document.getElementById("mapQuestContainer").innerHTML ='';
+            document.getElementById("mapQuestContainer").style.display ="block";
+          
+            console.log("mapquest");
+            if(document.getElementById("location").value!==''){
+            let locationValue = document.getElementById("location").value;
+            console.log(locationValue);
+
+            let api_key = "eAl2E5BkqwOBqnNFtlhisatq5qKbmsOp";
+                let url = `https://www.mapquestapi.com/geocoding/v1/address?key=${api_key = "eAl2E5BkqwOBqnNFtlhisatq5qKbmsOp"}&location=${locationValue}`;
+
+                fetch(url)
+                .then(res=>res.json())
+                .then(jsonResult=>outputTheMap(jsonResult.results[0].locations[0],api_key))
+
+            //geocode
+            //https://developer.mapquest.com/documentation/geocoding-api/address/get/
+
+        } //if input
+
+        else{
+            alert("no value in location")
+        }
+    }
+
+    //OUTPUT THE MAP DATA
+      /*******************************************/
+            function outputTheMap (locationData ,api_key){
+            console.log(locationData.displayLatLng)
+            let pContainer = document.getElementById("mapQuestContainer");
+            let mapContainer = document.createElement("div");
+            mapContainer.id = "map";
+            mapContainer.classList.add("mapClass");
+            pContainer.appendChild(mapContainer);
+
+         //https://developer.mapquest.com/documentation/mapquest-js/v1.3/
+
+             L.mapquest.key = api_key;
+             // 'map' refers to a <div> element with the ID map
+                L.mapquest.map('map', {
+                //use the center from the results/// 
+            center:[locationData.displayLatLng.lat,locationData.displayLatLng.lng],
+                layers: L.mapquest.tileLayer('map'),
+                zoom: 12
+                    });
+
+                document.getElementById("location").value=''
+            }
+
+
+            /* callback for CAT API */
+            /*******************************************/
+           function data_via_catapi(){
+            reset();
+            console.log("cats");
+            document.getElementById("catContainer").innerHTML ='';
+            document.getElementById("catContainer").style.display ="block";
+
+            fetch('https://api.thecatapi.com/v1/images/search?limit=10')
+            .then(res=>res.json())
+            .then(data=>outputCats(data))
+
+        }
+
+         /* OUTPUT CAT DATA */
+         /*******************************************/
+
+        function outputCats(dataCats){
+            //console.log(dataCats)
+            let pContainer = document.getElementById("catContainer");
+            let imageDiv = document.createElement("div");
+            imageDiv.classList.add("imageBox_flex");
+            pContainer.appendChild(imageDiv);
+            // A new way of iterating through an array :0 OF
+            for(let cat of dataCats){
+                console.log(cat);
+
+              
+                let image = document.createElement("img");
+                //ACCESS cat image
+                image.src =cat.url
+                imageDiv.appendChild(image);
+        
+
+             }
+           }
+      /* callback for JSON ACCESS */
+    /*******************************************/
+
+         function accessJsonfile(){
+            reset();
+
+            console.log("access data");
+            document.getElementById("dataContainer").innerHTML ="";
+            document.getElementById("dataContainer").style.display ="block";
+
+            fetch('json-files/books.json')
+            .then(res=>res.json())
+            .then(data=>
+            {
+                console.log(data);
+                outputTheData(data)
+            }
+            )
+        }
+     
+                
+    
+
+    //lots of for loops and key-value pairs that need to be examined ///
+        /* OUTPUT THE DATA */
+    /*******************************************/
+
+        function outputTheData(res){
+       
+        let pContainer = document.getElementById("dataContainer");
+        let headerCont = document.createElement("div");
+        pContainer.appendChild(headerCont);
+        headerCont.id = "header-label"
+         for(let key in res){
+            console.log(`key: ${key}`);
+            //the books array
+            if(key==='BookItems'){
+                let arr = res[key];
+                let wrapperDiv= document.createElement("div");
+                wrapperDiv.id =  "wrapper";
+                pContainer.appendChild(wrapperDiv);
+                for(let i = 0; i<arr.length; i++){
+
+                    let imageDiv = document.createElement("div");
+                    imageDiv.classList.add("imageBox");
+                    
+                    let textDiv = document.createElement("div");
+                    textDiv.classList.add("textBox");
+                  
+                    
+                    let pTag   = document.createElement("p");
+                    pTag.innerHTML = `** NEXT BOOK ENTRY ** ${i}`;
+                    textDiv.appendChild(pTag); 
+                    
+            
+                    let list = document.createElement("ul");
+                    textDiv.appendChild(list);
+                    //console.log(arr[i])
+                    let bookObj = arr[i];
+                    for(let key in bookObj){
+                       // console.log("inner key of book Obj: "+key)
+                       // console.log(bookObj[key])
+                        let itemTag   = document.createElement("li");
+                        if(key !=='Book_Image'){
+                        itemTag.innerHTML = `${key}: ${bookObj[key]}`;
+                        list.appendChild(itemTag);
+                    
+                        }
+                        else{
+                            let image = document.createElement("img");
+                            image.src = bookObj[key]
+                            imageDiv.appendChild(image);
+
+                        }
+                    
+                    }
+                    wrapperDiv.appendChild(textDiv);
+                    wrapperDiv.appendChild(imageDiv);
+
+
+                }
+
+                }
+                else{
+                let h3   = document.createElement("h3");
+                let cValue = res[key]
+                h3.innerHTML = `${key}: ${res[key]}`;
+                headerCont.appendChild(h3);
+                console.log(`value: ${cValue}`)
+                }
+
+            }
+
+        }
+
+    }
+</script>
+</body>
+</html>
