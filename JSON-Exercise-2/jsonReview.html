@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JSON SNACK LIST</title>
+  <style>
+  body{
+    margin:0;
+    padding:0;
+    font-family:Arial, Helvetica, sans-serif;
+  }
+  #container{
+    background: #24fa10;
+    width:70vw;
+    margin-top:50px;
+    margin-left:15vw;
+    min-height:400px;
+    padding:10px;
+  }
+  #output{
+    background: #c0eb70;
+    width:85%;
+
+    color:white;
+    padding-left:10px;
+    padding-top:10px;
+    padding-bottom:10px;
+
+
+  }
+
+</style>
+
+</head>
+<body>
+    <!-- do a basic fetch -- look both at .text() and .json()-->
+
+<div id = "container">
+    <h1>JSON SNACK LIST</h1>
+    <div id="output"></div> </div>
+
+</div>
+
+<script>
+    window.onload = function(){
+
+  let snacksJsonString =
+      {"Day": "Monday",
+      "Snacks": ["Banana", "Butter Toast", "BBQ Chips"],
+      "Feelings": ["Healthy", "Bland", "Tasty"],
+      "Times": ["9:30", "14:10", "21:40"]
+      }
+
+  let pTag = document.createElement("p");
+    document.getElementById("output").appendChild(pTag)
+    pTag.textContent = `Snacks : ${snacksJsonString.Snacks}`
+
+  let snacksArray = snacksJsonString.Snacks;
+    //make a for loop and iterate 
+    for(snacks of snacksArray){
+    console.log(snacks);
+
+  let feelingsArray = snacksJsonString.Snacks;
+    //make a for loop and iterate 
+    for(feelings of feelingsArray){
+    console.log(feelings);
+
+  let timesArray = snacksJsonString.Snacks;
+    //make a for loop and iterate 
+    for(times of timesArray){
+    console.log(times);
+ 
+  // let pTag = document.createElement("p");
+  //   document.getElementById("output").appendChild(pTag)
+  //   pTag.textContent = `Edition : ${edition}`;
+
+}
+
+ let snacksJsonArray =
+ [ 
+ {"Day": "Monday",
+      "Snacks": ["Banana", "Butter Toast", "BBQ Chips"],
+      "Feelings": ["Healthy", "Bland", "Tasty"],
+      "Times": ["9:30", "14:10", "21:40"]
+      },
+  {"Day": "Tuesday",
+      "Snacks": ["Croissant", "Grapes", "Cherry Ice Cream"],
+      "Feelings": ["Buttery", "Juicy", "Satisfied"],
+      "Times": ["9:20", "13:40", "22:10"]
+      },
+  {"Day": "Wednesday",
+      "Snacks": ["Apple", "Rice", "Chocolate", "Ketchup Chips"],
+      "Feelings": ["Bitter", "Boring", "Sweet", "Salty"],
+      "Times": ["9:50", "12:40", "19:10", "22:30"]
+      },
+  {"Day": "Thursday",
+      "Snacks": ["Nuts", "Zucchini Bread"],
+      "Feelings": ["Dry", "Moist"],
+      "Times": ["10:30", "15:50"]
+      },
+    ]
+    //ARRAY of OBJECTS
+    console.log(snacksJsonArray[0])
+    for(let i =0; i<snacksJsonArray.length; i++){
+        let pTag = document.createElement("p");
+    document.getElementById("output").appendChild(pTag)
+    pTag.textContent = `${i} : ${snacksJsonArray[i].Title}`;
+ 
+    }
+}
+    
+
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "Label":"Snacks",
+  "SubLabel":"This data is loaded from a json file::",
+  "SnackItems":
+  [
+  {"Day": "Monday",
+      "Snacks": ["Banana", "Butter Toast", "BBQ Chips"],
+      "Feelings": ["Healthy", "Bland", "Tasty"],
+      "Times": ["9:30", "14:10", "21:40"]
+      },
+  {"Day": "Tuesday",
+      "Snacks": ["Croissant", "Grapes", "Cherry Ice Cream"],
+      "Feelings": ["Buttery", "Juicy", "Satisfied"],
+      "Times": ["9:20", "13:40", "22:10"]
+      },
+  {"Day": "Wednesday",
+      "Snacks": ["Apple", "Rice", "Chocolate", "Ketchup Chips"],
+      "Feelings": ["Bitter", "Boring", "Sweet", "Salty"],
+      "Times": ["9:50", "12:40", "19:10", "22:30"]
+      },
+  {"Day": "Thursday",
+      "Snacks": ["Nuts", "Zucchini Bread"],
+      "Feelings": ["Dry", "Moist"],
+      "Times": ["10:30", "15:50"]
+      },
+    }
+    ]
+  }
