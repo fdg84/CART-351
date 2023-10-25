@@ -18,7 +18,13 @@
     padding:0;
     font-family:Arial, Helvetica, sans-serif;
   }
-  #container{
+  th{
+    text-align: left;
+  }
+  table {
+    width: 100%;
+  } 
+  #input{
     background: #a6ff00;
     width:70vw;
     margin-top:50px;
@@ -34,154 +40,103 @@
     padding-top:10px;
     padding-bottom:10px;
   }
-
 </style>
 
-<!-- <p>Select a Day</p>
-
-<select id="ui-select-native" multiple data-placeholder="Choose an Option" data-bind="options: availableOptions, selectedOptions: nativeSelected"></select>
-<p>
-  Snack Description
-</p>
-<ul data-bind="foreach: nativeSelected">
-  <li data-bind="text: $data"></li>
-</ul> -->
-
 </head>
-<body>
-    <!-- do a basic fetch -- look both at .text() and .json()-->
-
-<div id = "container">
+<body id = "body">
+  <div id = "input">
     <h1>DAILY SNACKS</h1>
-    <div id="output"></div> </div>
-
-</div>
-
-<script>
-    window.onload = function(){
-
-let snacksJsonString =
-{   "Title": "DAY 1",
-    "Day": "Monday",
-    "Morning": ["Banana", " Healthy", " 9:30"],
-    "Afternoon": ["Toast", " Bland", " 14:10"],
-    "Night": ["Chips", " Tasty", " 21:40"],
-    "Day_1": ["Morning", "Afternoon", "Night"]
-  }
-
-//   let snacksJsonString =
-// {   "Title": "DAY 2",
-//     "Day": "Tuesday",
-//     "Morning": ["Apple", " Bitter", " 9:50"],
-//     "Afternoon": ["Rice", " Boring", " 13:50"],
-//     "Night": ["Chocolate", " Sweet", " 19:30"],
-//     "Day_2": ["Morning", "Afternoon", "Night"]
-//   }
-
-//   let snacksJsonString =
-// {   "Title": "DAY 3",
-//     "Day": "Wednesday",
-//     "Morning": ["Nuts", " Dry", " 8:30"],
-//     "Afternoon": ["Avocado", " Ripe", " 15:20"],
-//     "Night": ["Crackers", " Crunchy", " 20:30"],
-//     "Day_3": ["Morning", "Afternoon", "Night"]
-//   }
-
-//   let snacksJsonString =
-// {   "Title": "DAY 4",
-//     "Day": "Thursday",
-//     "Morning": ["Croissant", " Fluffy", " 10:20"],
-//     "Afternoon": ["Grapes", " Juicy", " 14:40"],
-//     "Night": ["Yogurt", " Smooth", " 21:10"],
-//     "Day_4": ["Morning", "Afternoon", "Night"]
-//   }
-
-//   let snacksJsonString =
-// {   "Title": "DAY 5",
-//     "Day": "Friday",
-//     "Morning": ["Cereal", " Soggy", " 9:50"],
-//     "Afternoon": ["Cheese", " Smelly", " 15:30"],
-//     "Night": ["Orange", " Sticky", " 20:20"],
-//     "Day_5": ["Morning", "Afternoon", "Night"]
-//   }
-
-let pTag = document.createElement("p");
-  document.getElementById("output").appendChild(pTag)
-  pTag.textContent = `Morning : ${snacksJsonString.Morning}`
-
-  // let pTag = document.createElement("p");
-  // document.getElementById("output").appendChild(pTag)
-  // pTag.textContent = `Afternoon : ${snacksJsonString.Afternoon}`
-
-  // let pTag = document.createElement("p");
-  // document.getElementById("output").appendChild(pTag)
-  // pTag.textContent = `Night : ${snacksJsonString.Night}`
-
-let day1Array = snacksJsonString.Day_1;
-  //make a for loop and iterate 
-  for(day1 of day1Array){
-  console.log(day1);
- 
-let pTag = document.createElement("p");
-  document.getElementById("output").appendChild(pTag)
-  pTag.textContent = `Day_1 : ${day1}`;
-
-}
-//access the detail object
-let detailObject = snacksJsonString["Detail"];
- 
-//access ....
-console.log(detailObject);
-
-for(prop in detailObject){
-  let pTag = document.createElement("p");
-  document.getElementById("output").appendChild(pTag)
-  pTag.textContent = `${prop} : ${detailObject[prop]}`;
- }
-
- let snacksJsonArray =
- [ {"Title": "Monday",
-    "Morning": ["Banana", "Healthy", "9:30"],
-    "Afternoon": ["Toast", "Bland", "14:10"],
-    "Night": ["Chips", "Tasty", "21:40"],
-    "Edition_Years": ["1998", "2008","2014"]
-    },
-    {"Title": "Tuesday",
-    "Morning": ["Banana", "Healthy", "9:30"],
-    "Afternoon": ["Toast", "Bland", "14:10"],
-    "Night": ["Chips", "Tasty", "21:40"],
-    "Edition_Years": ["1998", "2008","2014"]
-    }
-    // {"Title": "Wednesday",
-    // "Morning": ["Banana", "Healthy", "9:30"],
-    // "Afternoon": ["Toast", "Bland", "14:10"],
-    // "Night": ["Chips", "Tasty", "21:40"],
-    // "Edition_Years": ["1998", "2008","2014"]
-    // }
-    // {"Title": "Thursday",
-    // "Morning": ["Banana", "Healthy", "9:30"],
-    // "Afternoon": ["Toast", "Bland", "14:10"],
-    // "Night": ["Chips", "Tasty", "21:40"],
-    // "Edition_Years": ["1998", "2008","2014"]
-    // }
-    // {"Title": "Friday",
-    // "Morning": ["Banana", "Healthy", "9:30"],
-    // "Afternoon": ["Toast", "Bland", "14:10"],
-    // "Night": ["Chips", "Tasty", "21:40"],
-    // "Edition_Years": ["1998", "2008","2014"]
-    // }
-    
-    ]
-    //ARRAY of OBJECTS
-    console.log(snacksJsonArray[0])
-    for(let i =0; i<snacksJsonArray.length; i++){
-        let pTag = document.createElement("p");
-    document.getElementById("output").appendChild(pTag)
-    pTag.textContent = `${i} : ${snacksJsonArray[i].Title}`;
- 
-    }
-}
-    
-</script>
+    <p>Select a Day</p>
+    <select name="days" id="days">
+      <option value="Monday">Monday</option>
+      <option value="Tuesday">Tuesday</option>
+      <option value="Wednesday">Wednesday</option>
+      <option value="Thursday">Thursday</option>
+      <option value="Friday">Friday</option>
+    </select>
+    <form id="button">
+      <input type="submit" value="Submit">
+    </form>
+    <p> Snack Description</p>
+    <div id="output">
+      <table id="table">
+        <tr>
+          <th>Meal</th>
+          <th>Food</th>
+          <th>Note</th>
+          <th>Time</th>
+        </tr>
+        <tr id = "Breakfast">
+        </tr>
+        <tr id = "Lunch">
+        </tr>
+        <tr id = "Dinner">
+        </tr>
+    </div> 
+  </div>
 </body>
 </html>
+
+
+<script>
+  const select = document.getElementById("days")
+  let selected
+  const button = document.getElementById("button")  
+  
+  // add a submit listener to the button
+  button.addEventListener("submit", (e) => {
+    // prevent page from reloading
+    e.preventDefault()
+    
+    // set selected to the day in the drop down
+    selected = select.value    
+    
+    if (selected === "Monday"){
+      document.body.style.backgroundImage = "url('resources/veggie.jpg')"
+    }else if (selected === "Tuesday"){
+      document.body.style.backgroundImage = "url('resources/banana.jpg')"
+    }else if (selected === "Wednesday"){
+      document.body.style.backgroundImage = "url('resources/banana.jpg')"
+    }else if (selected === "Thursday"){
+      document.body.style.backgroundImage = "url('resources/banana.jpg')"
+    }else if (selected === "Friday"){
+      document.body.style.backgroundImage = "url('resources/banana.jpg')"
+    }
+
+    // load the json 
+    fetch("../json-files/snacks.json")
+      .then(res => res.json())
+      .then(data => {
+        // filter the data from the json by the name
+        let day = data.filter(day => day.Name === selected)[0]
+        
+        
+        // loop through the json properties of the day
+        for (const [key, value] of Object.entries(day)) {
+          // only add to the table for Breakfast, Lunch and Dinner
+          if (key !== "Name"){
+            // get the element by the key name
+            meal = document.getElementById(key)
+            
+            // clear the list
+            while (meal.firstChild) {
+              meal.removeChild(meal.lastChild);
+            }
+            
+            // add the meal name 
+            let tName = document.createElement("td")
+            tName.innerHTML = key 
+            meal.appendChild(tName)    
+            
+            // add the values for food, note and time
+            value.forEach(val => {
+              let tData = document.createElement("td")
+              tData.innerHTML = val 
+              meal.appendChild(tData)   
+            })
+          }
+        }
+      }
+    ) 
+  })
+</script>
