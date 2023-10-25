@@ -1,0 +1,32 @@
+[
+    {
+      "Name": "Monday", 
+      "Breakfast":["Banana", "Healthy", "9:30"],
+      "Lunch":["Rice & Tofu", "Bland", "14:10"],
+      "Dinner":["Fish n Chips", "Tasty", "21:40"]
+    },
+    {
+      "Name": "Tuesday", 
+      "Breakfast":["Cereal", "Soggy", "9:50"],
+      "Lunch":["Mushroom Soup", "Herby", "12:20"],
+      "Dinner":["Lasagna", "Salty", "20:10"]
+    },
+    {
+      "Name": "Wednesday", 
+      "Breakfast":["Avocado Toast", "Delicious", "8:30"],
+      "Lunch":["Ham Sandwich", "Quick n Easy", "11:40"],
+      "Dinner":["Korean Chicken", "Spicy", "20:30"]
+    },
+    {
+      "Name": "Thursday", 
+      "Breakfast":["Yogurt", "Sweet", " 9:40"],
+      "Lunch":["Pizza", "Cheap", "13:30"],
+      "Dinner":["Beef Stew", "Moist", "21:20"]
+    },
+    {
+      "Name": "Friday", 
+      "Breakfast":["Apple", "Crunchy", "8:50"],
+      "Lunch":["Tomato Sandwich", "Wet", "11:40"],
+      "Dinner":["Cheeseburger", "Grilled", "20:20"]
+    }
+  ] 
