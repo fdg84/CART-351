@@ -94,7 +94,7 @@ export default Kapsule({
     arcStartLng: { default: 'startLng' },
     arcEndLat: { default: 'endLat' },
     arcEndLng: { default: 'endLng' },
-    arcColor: { default: () => '#ffffaa' }, // single color, array of colors or color interpolation fn
+    arcColor: { default: () => '#ffffff' }, // single color, array of colors or color interpolation fn
     arcAltitude: {}, // in units of globe radius
     arcAltitudeAutoScale: { default: 0.5 }, // scale altitude proportional to great-arc distance between the two points
     arcStroke: {}, // in deg
@@ -308,6 +308,8 @@ export default Kapsule({
       }
     }
 
+
+    // CHANGE COLORS HERE ??? only keep white value
     function calcColorVertexArray(colors, numSegments, numVerticesPerSegment = 1) {
       const numVerticesGroup = numSegments + 1; // one between every two segments and two at the ends
 
@@ -334,6 +336,7 @@ export default Kapsule({
         }
       }
 
+      // EDIT TO ONLY 1 ??? not working
       return array2BufferAttr(vertexColors, 4);
     }
 
