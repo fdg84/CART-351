@@ -260,6 +260,8 @@ export default Kapsule({
 
     //
 
+    
+
     function calcCurve({ alt, altAutoScale, startLat, startLng, endLat, endLng }) {
       const getVec = ([lng, lat, alt]) => {
         const { x, y, z } = polar2Cartesian(lat, lng, alt);

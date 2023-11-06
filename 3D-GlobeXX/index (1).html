@@ -4,9 +4,18 @@
   <script src="//unpkg.com/three"></script>
   <script src="//unpkg.com/three-globe"></script>
   <!--<script src="../../dist/three-globe.js"></script>-->
+  
+  <!-- <link rel="stylesheet" href="css/style.css"> -->
 </head>
 
 <body>
+
+  <!-- <style>
+    body {
+      background-image: url('//unpkg.com/three-globe/example/img/g1.JPG'); 
+    }
+    </style> -->
+
   <div id="globeViz"></div>
 
   <script type="importmap">{ "imports": { "three": "https://unpkg.com/three/build/three.module.js" }}</script>
@@ -42,6 +51,9 @@
       // .labelSize('size')
       // .labelDotRadius(d => d.size / 5)
       // .labelColor('color');
+
+// ADD STAR MESH at 19:40 >>
+// https://www.youtube.com/watch?v=q6vyDFSS11k
 
     // Setup renderer
     const renderer = new THREE.WebGLRenderer();
