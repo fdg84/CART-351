@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+    
+    
+}
+body{
+    background: black;
+    font-family: 'Poppins', sans-serif;
+    
+}
+section{
+    height:100vh ;
+}
+nav{
+    position: fixed;
+    z-index: 1;
+}
+li {
+    display: inline-block;
+}
+nav  a:hover{
+    opacity: 0.8;
+}
+video::-webkit-media-controls {
+    display:none ;
+}
+.specs{
+    background: white;
+}
+
+/* IMPORTANT CSS */
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.4rem;
+    margin-left: 10vh;
+    position: relative;
+    top: 5vh;
+    left: 55vh;
+}
+nav.dark a {
+    color: black;
+}

@@ -159,7 +159,7 @@ export default Kapsule({
       ...gradientShaders,
       transparent: true,
       blending: THREE.NormalBlending
-    });
+    }); 
 
     threeDigest(state.arcsData, state.scene, {
       createObj: () => {
