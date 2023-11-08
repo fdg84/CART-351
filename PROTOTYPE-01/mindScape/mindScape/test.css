@@ -1,0 +1,15 @@
+.column {
+    float: left;
+    width: 25%;
+    background-color: black;
+  }
+  
+/* Clear floats after the columns */
+.row{
+ background-color: black;
+ /* height: 100%; */
+ min-height:500px;
+ /* content: "";
+ display: table;
+ clear: both; */
+}
