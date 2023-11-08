@@ -1,0 +1,71 @@
+@keyframes fadeIn
+  from 
+    opacity: 0.0
+    height: 0px
+  to
+    opacity: 1.0
+    height: 200px
+body
+  padding: 0px
+  margin: 0px
+  background-color: #000
+  
+h1
+  position: absolute
+  top: 1%
+  left: 1%
+  font-family: "Century Gothic"
+  color: #0099FF
+  font-weight: 100
+  font-variant: small-caps
+  
+.description
+  animation: fadeIn 1s ease
+  border: 1px solid orange
+  width: 300px
+  height: 200px
+  font-family: "Century Gothic"
+  color: orange
+  top: 20%
+  left: 1%
+  font-weight: 100
+  font-variant: small-caps
+  position: absolute
+  padding: 10px
+  overflow: hidden
+  
+.settings
+  animation: fadeIn 3s ease
+  border: 1px solid lime
+  width: 300px
+  height: 200px
+  font-family: "Century Gothic"
+  color: lime
+  top: 20%
+  right: 1%
+  font-weight: 100
+  font-variant: small-caps
+  position: absolute
+  padding: 10px
+  overflow: hidden
+  
+.settings span
+  display: block
+  width: 100%
+  
+.settings input[type=range]
+  -webkit-appearance: none
+  height: 10px
+  background-color: lime
+  color: lime
+  width: 100%
+  border-radius: 30%
+  &::-webkit-slider-thumb
+    -webkit-appearance: none
+    background-color: white
+    border: 1px solid black
+    border-radius: 50%
+    width: 20px
+    height: 10px
+    
+

@@ -32,6 +32,7 @@ let mainSphere = new THREE.Mesh(new THREE.SphereGeometry(5), new THREE.MeshBasic
 scene.add(mainSphere);
 let dir = new THREE.Vector3();
 let sphere = new THREE.Mesh(new THREE.SphereGeometry(0.1), new THREE.MeshLambertMaterial({color: "blue"}));
+// delete pin = not working
 let pin = new THREE.Mesh(new THREE.ConeGeometry(0.1, 0.5).translate(0, -0.3, 0).rotateX(Math.PI * 0.5), new THREE.MeshLambertMaterial({color: "white"}));
 [
   [0, 0],
@@ -46,6 +47,7 @@ let pin = new THREE.Mesh(new THREE.ConeGeometry(0.1, 0.5).translate(0, -0.3, 0).
   newSphere.updateMatrixWorld();
   newPin.lookAt(0, 0, 0);
   mainSphere.add(newSphere);
+  // delete pin = not working
 })
 
 

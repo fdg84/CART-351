@@ -1,0 +1,16 @@
+%h1 Wireframe Cube (WebGL - ThreeJS)
+%div.description For those of you delving into 3D for the first time, here is a simple primer for showing you how to make use of WebGL via ThreeJS (thanks to the authors of this fantastic library).<br/><br/> Use the sliders on the right to modify some parameters. See comments in source to better understand what every line does. More primers to follow. Cheers!
+%div.settings 
+ %span camera-z 
+ %input{:name => "zCam", :min => "700", :max => "2000", :step => "0.1", :type => "range", :value => "1500"}/
+ %span x-rotation 
+ %input{:name => "xRot", :max => "0.1", :min => "-0.1", :step => "0.001", :type => "range", :value => "0.001"}/
+ %span y-rotation
+ %input{:name => "yRot", :max => "0.1", :min => "-0.1", :step => "0.001", :type => "range", :value => "0.001"}/
+ %span z-rotation
+ %input{:name => "zRot", :max => "0.1", :min => "-0.1", :step => "0.001", :type => "range", :value => "0.001"}/
+ %span segments per face
+ %input{:name => "triangles", :max => "50", :min => "3", :step => "1", :type => "range", :value => "20"}/
+
+
+

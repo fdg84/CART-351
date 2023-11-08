@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Wireframe Cube (WebGL ThreeJS)</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!-- <h1>Wireframe Cube (WebGL - ThreeJS)</h1>
+<div class='description'>For those of you delving into 3D for the first time, here is a simple primer for showing you how to make use of WebGL via ThreeJS (thanks to the authors of this fantastic library).<br/><br/> Use the sliders on the right to modify some parameters. See comments in source to better understand what every line does. More primers to follow. Cheers!</div> -->
+<div class='settings'>
+  <span>camera</span>
+  <!-- <span>camera-z</span> -->
+  <input max='2000' min='1500' name='zCam' step='0.1' type='range' value='1500'>
+  <!-- <span>x-rotation</span>
+  <input max='0.1' min='-0.1' name='xRot' step='0.001' type='range' value='0.001'>
+  <span>y-rotation</span>
+  <input max='0.1' min='-0.1' name='yRot' step='0.001' type='range' value='0.001'>
+  <span>z-rotation</span>
+  <input max='0.1' min='-0.1' name='zRot' step='0.001' type='range' value='0.001'> -->
+  <span>segments</span>
+  <!-- <span>segments per face</span> -->
+  <input max='50' min='3' name='triangles' step='1' type='range' value='20'>
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r76/three.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>

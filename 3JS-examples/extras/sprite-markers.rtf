@@ -1,0 +1,221 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\colortbl ;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang9\par
+{{\field{\*\fldinst{HYPERLINK https://hofk.de/main/discourse.threejs/2018/SetRemoveMarkers/SetRemoveMarkers.html }}{\fldrslt{https://hofk.de/main/discourse.threejs/2018/SetRemoveMarkers/SetRemoveMarkers.html\ul0\cf0}}}}\f0\fs22\par
+\par
+<!DOCTYPE hmtl>\par
+<!-- {{\field{\*\fldinst{HYPERLINK https://discourse.threejs.org/t/sprite-positioning-in-3d-scene/5060/8 }}{\fldrslt{https://discourse.threejs.org/t/sprite-positioning-in-3d-scene/5060/8\ul0\cf0}}}}\f0\fs22  -->\par
+<!-- {{\field{\*\fldinst{HYPERLINK https://codepen.io/prisoner849/pen/ZmMvEK }}{\fldrslt{https://codepen.io/prisoner849/pen/ZmMvEK\ul0\cf0}}}}\f0\fs22  -->\par
+<html>\par
+<head>\par
+<title> SetRemoveMarkers </title>\par
+<meta charset="utf-8">\par
+<style>\par
+\par
+\tab body \{\par
+\tab background-color: #000000;\par
+\tab margin: 0px;\par
+\tab overflow: hidden;\par
+\tab touch-action: none;\par
+\tab\}\par
+  </style>\par
+  </head>\par
+  <body>\par
+<div id="container"><canvas width="486" height="739" style="width: 486px; height: 739px;"></canvas></div>\par
+<script src="../js/three.min.98.js"></script>\par
+<script>\par
+\par
+// @author prisoner849\par
+\par
+var camera,\par
+  scene,\par
+  renderer,\par
+  raycaster = new THREE.Raycaster(),\par
+  mouse = new THREE.Vector2(),\par
+  intersects = [];\par
+var spriteMaterial = new THREE.SpriteMaterial(\{\par
+  map: new THREE.TextureLoader().load(\par
+  'Marker.png'  // "{{\field{\*\fldinst{HYPERLINK https://cywarr.github.io/small-shop/Marker.png }}{\fldrslt{https://cywarr.github.io/small-shop/Marker.png\ul0\cf0}}}}\f0\fs22 "\par
+  )\par
+\});\par
+var markers = [], markersCounter = 0;\par
+var isUserInteracting = false,\par
+  onMouseDownMouseX = 0,\par
+  onMouseDownMouseY = 0,\par
+  lon = 0,\par
+  onMouseDownLon = 0,\par
+  lat = 0,\par
+  onMouseDownLat = 0,\par
+  phi = 0,\par
+  theta = 0;\par
+init();\par
+animate();\par
+function init() \{\par
+  var container, mesh;\par
+  container = document.getElementById("container");\par
+  camera = new THREE.PerspectiveCamera(\par
+    75,\par
+    window.innerWidth / window.innerHeight,\par
+    1,\par
+    1100\par
+  );\par
+  camera.target = new THREE.Vector3(0, 0, 0);\par
+  scene = new THREE.Scene();\par
+  var geometry = new THREE.SphereBufferGeometry(500, 60, 40);\par
+  // invert the geometry on the x-axis so that all of the faces point inward\par
+  geometry.scale(-1, 1, 1);\par
+  var material = new THREE.MeshBasicMaterial(\{\par
+    map: new THREE.TextureLoader().load(\par
+    '2294472375_24a3b8ef46_o.jpg' // "{{\field{\*\fldinst{HYPERLINK https://threejs.org/examples/textures/2294472375_24a3b8ef46_o.jpg }}{\fldrslt{https://threejs.org/examples/textures/2294472375_24a3b8ef46_o.jpg\ul0\cf0}}}}\f0\fs22 "\par
+    )\par
+  \});\par
+  mesh = new THREE.Mesh(geometry, material);\par
+  scene.add(mesh);\par
+  renderer = new THREE.WebGLRenderer();\par
+  renderer.setPixelRatio(window.devicePixelRatio);\par
+  renderer.setSize(window.innerWidth, window.innerHeight);\par
+  container.appendChild(renderer.domElement);\par
+  document.addEventListener("mousedown", onPointerStart, false);\par
+  document.addEventListener("mousemove", onPointerMove, false);\par
+  document.addEventListener("mouseup", onPointerUp, false);\par
+  document.addEventListener("wheel", onDocumentMouseWheel, false);\par
+  document.addEventListener("touchstart", onPointerStart, false);\par
+  document.addEventListener("touchmove", onPointerMove, false);\par
+  document.addEventListener("touchend", onPointerUp, false);\par
+  //\par
+  document.addEventListener(\par
+    "dragover",\par
+    function(event) \{\par
+      event.preventDefault();\par
+      event.dataTransfer.dropEffect = "copy";\par
+    \},\par
+    false\par
+  );\par
+  document.addEventListener(\par
+    "dragenter",\par
+    function() \{\par
+      document.body.style.opacity = 0.5;\par
+    \},\par
+    false\par
+  );\par
+  document.addEventListener(\par
+    "dragleave",\par
+    function() \{\par
+      document.body.style.opacity = 1;\par
+    \},\par
+    false\par
+  );\par
+  document.addEventListener(\par
+    "drop",\par
+    function(event) \{\par
+      event.preventDefault();\par
+      var reader = new FileReader();\par
+      reader.addEventListener(\par
+        "load",\par
+        function(event) \{\par
+          material.map.image.src = event.target.result;\par
+          material.map.needsUpdate = true;\par
+        \},\par
+        false\par
+      );\par
+      reader.readAsDataURL(event.dataTransfer.files[0]);\par
+      document.body.style.opacity = 1;\par
+    \},\par
+    false\par
+  );\par
+  //\par
+  window.addEventListener("resize", onWindowResize, false);\par
+\par
+  document.addEventListener(\par
+    "dblclick",\par
+    event => \{\par
+      mouse.x = event.clientX / window.innerWidth * 2 - 1;\par
+      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;\par
+\par
+      raycaster.setFromCamera(mouse, camera);\par
+\par
+      let marker = new THREE.Sprite(spriteMaterial);\par
+      marker.scale.set(20, 20, 1);\par
+      marker.name = "marker" + markersCounter;\par
+      raycaster.ray.at(210, marker.position);\par
+      scene.add(marker);\par
+      markers.push(marker);\par
+      markersCounter++;\par
+    \},\par
+    false\par
+  );\par
+\}\par
+function onWindowResize() \{\par
+  camera.aspect = window.innerWidth / window.innerHeight;\par
+  camera.updateProjectionMatrix();\par
+  renderer.setSize(window.innerWidth, window.innerHeight);\par
+\}\par
+function onPointerStart(event) \{\par
+  isUserInteracting = true;\par
+  var clientX = event.clientX || event.touches[0].clientX;\par
+  var clientY = event.clientY || event.touches[0].clientY;\par
+  onMouseDownMouseX = clientX;\par
+  onMouseDownMouseY = clientY;\par
+  onMouseDownLon = lon;\par
+  onMouseDownLat = lat;\par
+  \par
+  // Deletion\par
+  mouse.x = clientX / window.innerWidth * 2 - 1;\par
+  mouse.y = -(clientY / window.innerHeight) * 2 + 1;\par
+  \par
+  raycaster.setFromCamera(mouse, camera);\par
+  \par
+  intersects = raycaster.intersectObjects(markers);\par
+  \par
+  if (intersects.length > 0)\{\par
+    let obj = intersects[0];\par
+    let uv = obj.uv;\par
+    if (Math.min(uv.x, uv.y) > 0.75) \{ \par
+      obj.object.visible = false; // you have to do the stuff for real clearance\par
+    \}\par
+  \} \par
+\}\par
+function onPointerMove(event) \{\par
+  if (isUserInteracting === true) \{\par
+    var clientX = event.clientX || event.touches[0].clientX;\par
+    var clientY = event.clientY || event.touches[0].clientY;\par
+    lon = (onMouseDownMouseX - clientX) * 0.1 + onMouseDownLon;\par
+    lat = (clientY - onMouseDownMouseY) * 0.1 + onMouseDownLat;\par
+  \}\par
+\}\par
+function onPointerUp() \{\par
+  isUserInteracting = false;\par
+\}\par
+function onDocumentMouseWheel(event) \{\par
+  var fov = camera.fov + event.deltaY * 0.05;\par
+  camera.fov = THREE.Math.clamp(fov, 10, 75);\par
+  camera.updateProjectionMatrix();\par
+\}\par
+function animate() \{\par
+  requestAnimationFrame(animate);\par
+  update();\par
+\}\par
+function update() \{\par
+  if (isUserInteracting === false) \{\par
+    //lon += 0.1;\par
+  \}\par
+  lat = Math.max(-85, Math.min(85, lat));\par
+  phi = THREE.Math.degToRad(90 - lat);\par
+  theta = THREE.Math.degToRad(lon);\par
+  camera.target.x = 500 * Math.sin(phi) * Math.cos(theta);\par
+  camera.target.y = 500 * Math.cos(phi);\par
+  camera.target.z = 500 * Math.sin(phi) * Math.sin(theta);\par
+  camera.lookAt(camera.target);\par
+  /*\par
+\tab\tab\tab\tab // distortion\par
+\tab\tab\tab\tab camera.position.copy( camera.target ).negate();\par
+\tab\tab\tab\tab */\par
+  renderer.render(scene, camera);\par
+\}\par
+</script>\par
+</body>\par
+<div id="vimeo-record-extension"></div>\par
+</html>\par
+}
+ 
