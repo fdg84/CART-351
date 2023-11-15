@@ -1,6 +1,6 @@
 const graphData = {
     "nodes": [
-        {"id": "Mind", "group": 1, "text": "My Mind is Searching", "imageURL": "images/AI1x.jpg"},
+        {"id": "Mind", "group": 1, "text": "My Mind is Searching My Mind is Searching My Mind is Searching My Mind is Searching My Mind is Searching", "imageURL": "images/AI1x.jpg"},
         {"id": "Illusions", "group": 2, "text": "Illusions are Fleeting", "imageURL": "images/AI7x.jpg"},
         {"id": "Dreams", "group": 3, "text": "Dreams are Vivid", "imageURL": "images/AI5x.jpg"},
         {"id": "Networks", "group": 4, "text": "Networks of Confusion", "imageURL": "images/AI6x.jpg"},
@@ -43,14 +43,25 @@ const Graph = ForceGraph3D()
     .graphData(graphData)
     .nodeAutoColorBy('group')
     .nodeLabel('id')
+    .onNodeHover(node => onHover(node))
     .onNodeClick((node, e) => onClick(node, e))
+    .nodeThreeObjectExtend(true)
     .nodeThreeObject(node => {
-    //   const sprite = new SpriteText(node.id);
-    //   sprite.material.depthWrite = false; // make sprite background transparent
-    //   sprite.color = node.color;
-    //   sprite.textHeight = 8;
-    //   return sprite;
+      let subLength = Math.floor(node.text.length/3)
+      let text = node.text.slice(0, subLength) + '\n' + node.text.slice(subLength, 2*subLength) + '\n' + node.text.slice(2*subLength, 3*subLength); 
+      const sprite = new SpriteText(text);
+      sprite.material.depthWrite = false;
+      sprite.material.opacity = .7
+      sprite.color = node.color;
+      sprite.textHeight = 8;
+      return sprite;
     });
+    
+function onHover(node) {
+  // console.log("GRAPH", Graph)
+  // console.log(node)
+  // Graph.nodeThreeObjectExtend(false)
+}
 
 function onClick(node, e) {
     const nodeTitle = document.getElementById("nodeTitle")
@@ -75,3 +86,35 @@ function onClick(node, e) {
     
 // Spread nodes a little wider
 Graph.d3Force('charge').strength(-120);
+
+//const fontJson = require("helvetiker_regular.typeface.json");
+
+const loader = new FontLoader();
+
+const font = loader.load(
+	// resource URL
+	'helvetiker_bold.typeface.json',
+
+	// onLoad callback
+	function ( font ) {
+		// do something with the font
+		console.log( font );
+	},
+
+	// onProgress callback
+	function ( xhr ) {
+		console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+	},
+
+	// onError callback
+	function ( err ) {
+		console.log( 'An error happened' );
+	}
+);
+const planeGeometry = new THREE.PlaneGeometry(1000, 1000, 1, 1);
+const planeMaterial = new THREE.MeshLambertMaterial({color: 0xFF0000, side: THREE.DoubleSide});
+const mesh = new THREE.Mesh(planeGeometry, planeMaterial);
+mesh.position.set(-100, -200, -100);
+mesh.rotation.set(0.5 * Math.PI, 0, 0);
+
+Graph.scene().add(mesh);
