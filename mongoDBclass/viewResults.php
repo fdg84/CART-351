@@ -26,7 +26,7 @@ try {
     // $result = $collection->findOne([]);
 
     //b: all results 
-    $resultObject = $collection->find([]);
+//    $resultObject = $collection->find([]);
     //1: returns a MONGODB cursor object
     // var_dump($resultObject);
 
@@ -40,6 +40,44 @@ try {
     //   echo("</br>");
      
     // }
+
+//    $resultObject = $collection->find(['points'=>['$gt'=>200]]);
+
+// WITHIN A RANGE
+// $startTime = new MongoDB\BSON\UTCDateTime(strtotime('2003-01-12')*1000);
+// $resultObject = $collection->find(['creationDate'=>['$gt'=>$startTime]]);
+
+// AND OR
+// $startTime = new MongoDB\BSON\UTCDateTime(strtotime('2003-01-12')*1000);
+// $endTime = new MongoDB\BSON\UTCDateTime(strtotime('2006-01-12')*1000);
+// $resultObject = $collection->find(['$and'=>[ ['creationDate'=> ['$gt'=>$startTime]] ,['creationDate'=> ['$lt'=>$endTime]]]]);
+
+// $resultObject = $collection->find(['$or' =>[['artist'=>'Sarah'],['artist'=>'Martha']]]);
+
+// SORT
+// $options = ['sort' => ['creationDate' => 1]];
+// $resultObject = $collection->find(['$or' =>[['artist'=>'Sarah'],['artist'=>'Martha']]],$options);
+
+// LIMIT
+// $options = ['sort' => ['creationDate' => 1],'limit' => 2];
+// $resultObject = $collection->find(['$or' =>[['artist'=>'Sarah'],['artist'=>'Martha']]],$options);
+
+// SELECTING FIELDS
+//WITH projection:
+// $options = ['projection'=>['_id'=>0,'title'=>1,'artist'=>1]];
+// $resultObject = $collection->find([],$options);
+
+// $options = ['sort' => ['creationDate' => 1],'limit' => 4,'projection'=>['_id'=>0,'title'=>1,'artist'=>1]];
+// $resultObject = $collection->find(['$or' =>[['artist'=>'Sarah'],['artist'=>'Martha']]],$options);
+
+// COUNTING
+$resultCount = $collection->count(['artist'=>'Sarah']);
+echo($resultCount);
+
+
+
+
+
 
     echo("</br>");
     echo "<h3> Query Results:::</h3>";
